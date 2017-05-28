@@ -52,6 +52,7 @@ public class Turret : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, closestEnemy.transform.position) > range)
         {
+            SearchForNewTarget();
             return false;
         }
         else
