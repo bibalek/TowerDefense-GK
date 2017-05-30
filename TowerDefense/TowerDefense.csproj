@@ -81,6 +81,8 @@
     <Compile Include="Assets\AssetPacks\TerrainToolkit\com\heparo\terrain\toolkit\scripts\TerrainToolkit.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\PathNode.cs" />
+    <Compile Include="Assets\Scripts\ProjectileLauncher.cs" />
+    <Compile Include="Assets\Scripts\SimpleProjectile.cs" />
     <Compile Include="Assets\Scripts\Turret.cs" />
   </ItemGroup>
   <ItemGroup>

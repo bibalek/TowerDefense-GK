@@ -13,6 +13,12 @@ public class Turret : MonoBehaviour
     [SerializeField]
     GameObject partRotatingInYAxis;
 
+    #region Public Properties
+    public float FireRange { get { return range; } }
+    public Collider CurrentTarget { get { return closestEnemy; } }
+
+    #endregion
+
     private Collider[] enemies;
     private Collider closestEnemy;
     private float minimumDistance = Mathf.Infinity;
