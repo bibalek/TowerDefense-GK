@@ -418,7 +418,6 @@ GameObject:
   m_Component:
   - component: {fileID: 893344925}
   - component: {fileID: 893344926}
-  - component: {fileID: 893344927}
   m_Layer: 0
   m_Name: WaveManager
   m_TagString: Untagged
@@ -453,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnCooldown: 1
   nextWaveCooldown: 3
-  startSpawningTime: 1
+  startSpawningTime: 4
   spawnPoint: {fileID: 1386181980}
   waves:
   - waveIngredients:
@@ -473,28 +472,6 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 1473052698499244, guid: eb9afb4936e55664dbbb5b8e85588969,
         type: 2}
       amount: 2
---- !u!114 &893344927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 893344924}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5941bc4f5e42f304c90a33d03d0fba4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waveIngredients:
-  - enemyPrefab: {fileID: 1347802859329230, guid: 7f40867f8600e804fac28731caf35ab0,
-      type: 2}
-    amount: 3
-  - enemyPrefab: {fileID: 1473052698499244, guid: eb9afb4936e55664dbbb5b8e85588969,
-      type: 2}
-    amount: 2
-  - enemyPrefab: {fileID: 1347802859329230, guid: 7f40867f8600e804fac28731caf35ab0,
-      type: 2}
-    amount: 4
-  spawner: {fileID: 1386181980}
 --- !u!1 &959459208 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1549360686540962, guid: 4855d7e731556784da49996d4553bad3,
