@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Controllers\Wave.cs" />
     <Compile Include="Assets\Scripts\Controllers\WaveController.cs" />
     <Compile Include="Assets\Scripts\Controllers\WaveIngredient.cs" />
+    <Compile Include="Assets\Scripts\Controllers\WaveTest.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\PathNode.cs" />
     <Compile Include="Assets\Scripts\ProjectileLauncher.cs" />

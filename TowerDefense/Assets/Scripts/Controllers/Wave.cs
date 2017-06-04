@@ -5,21 +5,37 @@ using UnityEngine;
 [System.Serializable]
 public class Wave
 {
-    #region Serialize Fields
-    //[SerializeField]
-    //private List<WaveIngredient> wave;
     [SerializeField]
-    private WaveIngredient[] wave;
-    #endregion
+    private List<WaveIngredient> waveIngredients;
+    //[SerializeField]
+    //private Transform spawner;
 
-    public WaveIngredient[] CurrentWave { get; private set; }
+    public List<WaveIngredient> CurrentIngredients { get { return waveIngredients; } }
+    public Wave CurrentWave { get { return this; } }
 
-    //public Wave(GameObject prefab, int startSize, int maxSize, string name)
+
+    private float enemyCooldown = 1;
+    private void Start()
+    {
+        //StartCoroutine(SpawnEnemies(enemyCooldown));
+    }
+    private void Update()
+    {
+
+    }
+
+    //public IEnumerator SpawnEnemies(float spawnCooldown)
     //{
-    //    oryginalPrefab = prefab;
-    //    startPoolSize = startSize;
-    //    maxPoolSize = maxSize;
-    //    poolName = name;
-    //}
 
+    //    foreach (WaveIngredient waveIngredient in waveIngredients)
+    //    {
+    //        Debug.Log(waveIngredient.CurrentWaveIngredient.Amount);
+    //        Debug.Log(waveIngredient.CurrentWaveIngredient.EnemyPrefab);
+    //        for (int i = 0; i < waveIngredient.CurrentWaveIngredient.Amount; i++)
+    //        {
+    //            yield return new WaitForSeconds(spawnCooldown);
+    //            Instantiate(waveIngredient.CurrentWaveIngredient.EnemyPrefab, spawner.position, spawner.rotation);
+    //        }
+    //    }
+    //}
 }

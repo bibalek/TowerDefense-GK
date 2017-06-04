@@ -14,10 +14,10 @@ public class WaveController : MonoBehaviour
     private float startSpawningTime;
     [SerializeField]
     private Transform spawnPoint;
-    //[SerializeField]
-    //private List<Wave> waves;
     [SerializeField]
-    private Wave[] waves;
+    private List<Wave> waves;
+    //[SerializeField]
+    //private Wave[] waves;
     #endregion
 
     #region Private Variables
@@ -29,40 +29,48 @@ public class WaveController : MonoBehaviour
     #region Unity Callbacks
     private void Start()
     {
-        //waves = new List<Wave>();
-        //waves.Add(new Wave());
+        StartCoroutine(SpawnWave(nextWaveCooldown));
     }
 
     private void Update()
     {
-        Debug.Log(waves.Length);
-        StartCoroutine( SpawnWave(3, true));
+        Debug.Log(SpawnNextWave);
+
     }
     #endregion
 
     #region Private Methods
-    private IEnumerator SpawnWave(float time, bool spawnCondition)
+    private IEnumerator SpawnWave(float time)
     {
-        yield return new WaitForSeconds(startSpawningTime);
-        foreach (Wave w in waves)
+        int i = 0;
+        StopCoroutine("SpawnEnemies");
+        if (SpawnNextWave)
         {
-            Debug.Log(w.CurrentWave.Length);
-            foreach (WaveIngredient wi in w.CurrentWave)
+            foreach (Wave wave in waves)
             {
-                Debug.Log(wi.EnemyPrefab.name);
-            //    for(int i = 0; i < wi.Amount; i++)
-            //    {
-            //        Instantiate(wi.EnemyPrefab, spawnPoint.position, spawnPoint.rotation);
-            //        yield return new WaitForSeconds(spawnCooldown);
-            //    }
-                
-            }
-            //yield return new WaitForSeconds(nextWaveCooldown);
-        }
+                Debug.Log(i++);
+                yield return new WaitForSeconds(time);
+                StartCoroutine(SpawnEnemies(spawnCooldown, wave.CurrentWave.CurrentIngredients));
 
-        //spawnCondition = false;
-        //yield return new WaitForSeconds(time);
-        //spawnCondition = true;
+
+            }
+        }
+    }
+
+    public IEnumerator SpawnEnemies(float spawnCooldown, List<WaveIngredient> waveIngredients)
+    {
+        SpawnNextWave = false;
+        foreach (WaveIngredient waveIngredient in waveIngredients)
+        {
+            //Debug.Log(waveIngredient.CurrentWaveIngredient.Amount);
+            //Debug.Log(waveIngredient.CurrentWaveIngredient.EnemyPrefab);
+            for (int i = 0; i < waveIngredient.CurrentWaveIngredient.Amount; i++)
+            {
+                yield return new WaitForSeconds(spawnCooldown);
+                Instantiate(waveIngredient.CurrentWaveIngredient.EnemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            }
+        }
+        SpawnNextWave = true;
     }
 
     #endregion
