@@ -78,10 +78,13 @@
     <Compile Include="Assets\AssetPacks\TerrainToolkit\com\heparo\terrain\toolkit\scripts\TerrainToolkit.cs" />
     <Compile Include="Assets\Scripts\Controllers\GameEventManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Controllers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\Wave.cs" />
-    <Compile Include="Assets\Scripts\Controllers\WaveController.cs" />
     <Compile Include="Assets\Scripts\Controllers\WaveIngredient.cs" />
+    <Compile Include="Assets\Scripts\Controllers\WaveManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\IDestructibleUnit.cs" />
     <Compile Include="Assets\Scripts\PathNode.cs" />
     <Compile Include="Assets\Scripts\ProjectileLauncher.cs" />
     <Compile Include="Assets\Scripts\SimpleProjectile.cs" />
