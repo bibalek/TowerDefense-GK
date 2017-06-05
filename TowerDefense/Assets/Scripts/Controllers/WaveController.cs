@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveController : MonoBehaviour
+public class WaveController : Singleton<WaveController>
 {
     #region Serialize Fields
     [SerializeField]
