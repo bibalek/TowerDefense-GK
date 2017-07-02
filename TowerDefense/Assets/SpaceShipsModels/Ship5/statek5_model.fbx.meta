@@ -1,0 +1,108 @@
+fileFormatVersion: 2
+guid: 2da802d326dda1d4a8f878d7b46730b6
+timeCreated: 1499025621
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Camera
+    100002: "Kad\u0142ub"
+    100004: Kokpit
+    100006: Lamp
+    100008: Silniki
+    100010: "Skrzyd\u0142a 1"
+    100012: "Skrzyd\u0142a 2"
+    100014: //RootNode
+    400000: Camera
+    400002: "Kad\u0142ub"
+    400004: Kokpit
+    400006: Lamp
+    400008: Silniki
+    400010: "Skrzyd\u0142a 1"
+    400012: "Skrzyd\u0142a 2"
+    400014: //RootNode
+    2300000: "Kad\u0142ub"
+    2300002: Kokpit
+    2300004: Silniki
+    2300006: "Skrzyd\u0142a 1"
+    2300008: "Skrzyd\u0142a 2"
+    3300000: "Kad\u0142ub"
+    3300002: Kokpit
+    3300004: Silniki
+    3300006: "Skrzyd\u0142a 1"
+    3300008: "Skrzyd\u0142a 2"
+    4300000: Kokpit
+    4300002: "Skrzyd\u0142a 1"
+    4300004: Silniki
+    4300006: "Kad\u0142ub"
+    4300008: "Skrzyd\u0142a 2"
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
