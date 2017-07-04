@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour, IDestructibleUnit
 
     public void DealDamage(int damageToDeal)
     {
-        GameEventsManager.Instance.EnemyHit();
+        GameEventManager.Instance.EnemyHit();
         currentHitPoints -= damageToDeal;
         if(damageToDeal <= 0)
         {
@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour, IDestructibleUnit
 
     public void DestroyUnit()
     {
-        GameEventsManager.Instance.EnemyDestroyed();
+        GameEventManager.Instance.EnemyDestroyed();
         Destroy(gameObject);
     }
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class GameEventsManager : Singleton<GameEventsManager>
+public class GameEventManager : Singleton<GameEventManager>
 {
     #region Serialized Fields
     [SerializeField, HideInInspector]
