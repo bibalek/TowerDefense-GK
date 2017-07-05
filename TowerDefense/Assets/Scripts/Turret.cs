@@ -40,6 +40,11 @@ public class Turret : MonoBehaviour
         TryToRotateTowardsEnemy();
     }
 
+    private void OnMouseDown()
+    {
+        UIManager.Instance.ChangeUpgradePanelVisibility();
+    }
+
     private void TryToSearchForEnemy()
     {
         if (canSearch)

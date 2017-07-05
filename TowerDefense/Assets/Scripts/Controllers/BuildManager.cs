@@ -51,6 +51,7 @@ public class BuildManager : MonoBehaviour
             {
                 Debug.Log(hit.transform.gameObject.name);
             }
+
             turret.transform.position = hit.point;
 
             if (Input.GetMouseButtonDown(0))
@@ -61,6 +62,7 @@ public class BuildManager : MonoBehaviour
                     turret.transform.position = hit.point;
                     turret.GetComponent<Turret>().enabled = true;
                     turret.GetComponent<ProjectileLauncher>().enabled = true;
+                    turret.GetComponent<Collider>().enabled = true;
                     turret = null;
                     ScoreManager.Instance.SubtractScore(cost);
                 }

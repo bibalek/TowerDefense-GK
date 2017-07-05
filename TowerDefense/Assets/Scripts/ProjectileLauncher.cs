@@ -17,10 +17,17 @@ public class ProjectileLauncher : MonoBehaviour
 
     #endregion
 
+    #region Private Fields
     private Turret turretScript;
     private float fireRange;
     private bool canShoot = true;
     private Collider currentTarget;
+    #endregion
+
+    #region Public Properties
+    public float FireCooldown { get { return fireCooldown; } set { fireCooldown = value; } }
+    public int TurretDamage { get { return turretDamage; } set { turretDamage = value; } }
+    #endregion
 
     #region Unity Callbacks
     private void Start()

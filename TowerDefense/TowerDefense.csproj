@@ -79,8 +79,10 @@
     <Compile Include="Assets\Scripts\Controllers\BuildManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\GameEventManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\Controllers\ShopManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\Singleton.cs" />
     <Compile Include="Assets\Scripts\Controllers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Controllers\Upgrade.cs" />
     <Compile Include="Assets\Scripts\Controllers\UpgradeManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\Wave.cs" />
     <Compile Include="Assets\Scripts\Controllers\WaveIngredient.cs" />
