@@ -2,15 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour {
+public class ScoreManager : Singleton<ScoreManager>
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private int startScore;
+    [SerializeField]
+    private int currentScore;
+
+    private void Awake()
+    {
+        currentScore = startScore;
+        GameEventManager.Instance.OnEnemyDestroyed.AddListener(() => AddScore(5));
+    }
+
+    private void Update()
+    {
+
+    }
+
+    public int CurrentScore { get { return currentScore; } }
+
+    public void AddScore(int scoreToAdd)
+    {
+        currentScore += scoreToAdd;
+        GameEventManager.Instance.ScoreChanged();
+    }
+
+    public void SubtractScore(int scoreToSubtract)
+    {
+        currentScore -= scoreToSubtract;
+        GameEventManager.Instance.ScoreChanged();
+    }
 }

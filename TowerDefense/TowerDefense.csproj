@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Controllers\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\Singleton.cs" />
     <Compile Include="Assets\Scripts\Controllers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Controllers\UpgradeManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\Wave.cs" />
     <Compile Include="Assets\Scripts\Controllers\WaveIngredient.cs" />
     <Compile Include="Assets\Scripts\Controllers\WaveManager.cs" />

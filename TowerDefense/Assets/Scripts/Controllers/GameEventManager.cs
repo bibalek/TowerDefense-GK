@@ -8,11 +8,14 @@ public class GameEventManager : Singleton<GameEventManager>
     private UnityEvent onEnemyDestroyed;
     [SerializeField, HideInInspector]
     private UnityEvent onEnemyHit;
+    [SerializeField, HideInInspector]
+    private UnityEvent onScoreChange;
     #endregion
 
     #region Public Properties
     public UnityEvent OnEnemyDestroyed { get { return onEnemyDestroyed; } set { onEnemyDestroyed = value; } }
     public UnityEvent OnEnemyHit { get { return onEnemyHit; } set { onEnemyHit = value; } }
+    public UnityEvent OnScoreChange { get { return onScoreChange; } set { onScoreChange = value; } }
     #endregion
 
     #region Public Methods
@@ -29,6 +32,14 @@ public class GameEventManager : Singleton<GameEventManager>
         if (onEnemyHit != null)
         {
             onEnemyHit.Invoke();
+        }
+    }
+
+    public void ScoreChanged()
+    {
+        if (onScoreChange != null)
+        {
+            onScoreChange.Invoke();
         }
     }
     #endregion

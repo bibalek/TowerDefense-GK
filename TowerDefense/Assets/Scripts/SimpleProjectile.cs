@@ -15,12 +15,14 @@ public class SimpleProjectile : MonoBehaviour {
     #region Public Properties
 
     public Transform ProjectileTarget { get { return target; } set { target = value; } }
+    public int DamageToDeal { get { return damageToDeal; } set { damageToDeal = value; } }
 
     #endregion
 
     private Transform target;
     private Vector3 direction;
     private float currentDistance;
+    private int damageToDeal;
 
     #region Unity Callbacks
     private void Start()
@@ -38,6 +40,19 @@ public class SimpleProjectile : MonoBehaviour {
         }
 
     }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.transform.parent.CompareTag("Enemy"))
+        {
+            IDestructibleUnit destructibleUnit = collider.gameObject.GetComponentInParent<IDestructibleUnit>();
+            if (destructibleUnit != null)
+            {
+                destructibleUnit.DealDamage(damageToDeal);
+            }
+            Destroy(gameObject);
+        }
+    }
     #endregion
 
     #region Private Methods
@@ -45,16 +60,6 @@ public class SimpleProjectile : MonoBehaviour {
     {
         transform.position += transform.forward * Time.deltaTime * speed;
     }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if(collider.transform.parent.CompareTag("Enemy"))
-        {
-            Debug.Log("TODO: Dealing Damage");
-            Destroy(gameObject);
-        }
-    }
-
     #endregion
 
 }

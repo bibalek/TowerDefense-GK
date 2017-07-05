@@ -11,6 +11,7 @@ public class BuildManager : MonoBehaviour
 
     private bool canBuild = false;
     private GameObject turret = null;
+    private int cost = 0;
 
     #region Unity Callbacks
     private void Start()
@@ -29,24 +30,29 @@ public class BuildManager : MonoBehaviour
 
     public void SpawnTurret()
     {
-        turret = Instantiate(turretToBuild);
-        canBuild = true;
+        cost = turretToBuild.GetComponent<Turret>().BuildCost;
+        if (ScoreManager.Instance.CurrentScore >= cost)
+        {
+            turret = Instantiate(turretToBuild);
+            canBuild = true;
+        }
+        else
+        {
+            Debug.Log("nem");
+        }  
     }
 
     private void TryToBuild()
     {
         if (canBuild)
         {
-            float dis;
-            Vector3 mousePosition = Input.mousePosition;
-            //Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 100));
-            ray = Camera.main.ScreenPointToRay(mousePosition);
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
                 Debug.Log(hit.transform.gameObject.name);
             }
-            Debug.Log(hit.point.y);
             turret.transform.position = hit.point;
+
             if (Input.GetMouseButtonDown(0))
             {
                 if (hit.point.y >= 4.8 && hit.collider.gameObject.CompareTag("Terrain"))
@@ -56,6 +62,7 @@ public class BuildManager : MonoBehaviour
                     turret.GetComponent<Turret>().enabled = true;
                     turret.GetComponent<ProjectileLauncher>().enabled = true;
                     turret = null;
+                    ScoreManager.Instance.SubtractScore(cost);
                 }
                 else
                 {

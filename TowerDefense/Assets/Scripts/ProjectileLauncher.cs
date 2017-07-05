@@ -12,6 +12,8 @@ public class ProjectileLauncher : MonoBehaviour
     private float fireCooldown;
     [SerializeField]
     private Transform barrel;
+    [SerializeField]
+    private int turretDamage;
 
     #endregion
 
@@ -54,6 +56,7 @@ public class ProjectileLauncher : MonoBehaviour
     private void SetProjectileTransform(GameObject projectile)
     {
         SimpleProjectile simpleProjectile = projectile.GetComponent<SimpleProjectile>();
+        simpleProjectile.DamageToDeal = turretDamage;
         simpleProjectile.ProjectileTarget = currentTarget.transform;
         projectile.transform.forward = barrel.forward;
         projectile.transform.position = barrel.position;

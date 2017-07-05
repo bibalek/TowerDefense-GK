@@ -2397,6 +2397,7 @@ MonoBehaviour:
   range: 100
   searchCooldown: 2
   partRotatingInYAxis: {fileID: 1900711616198252}
+  buildCost: 25
 --- !u!114 &114935601524174426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2412,3 +2413,4 @@ MonoBehaviour:
     type: 2}
   fireCooldown: 1
   barrel: {fileID: 4125770693224834}
+  turretDamage: 5

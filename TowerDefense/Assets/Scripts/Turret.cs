@@ -12,10 +12,13 @@ public class Turret : MonoBehaviour
     float searchCooldown;
     [SerializeField]
     GameObject partRotatingInYAxis;
+    [SerializeField]
+    private int buildCost;
 
     #region Public Properties
     public float FireRange { get { return range; } }
     public Collider CurrentTarget { get { return closestEnemy; } }
+    public int BuildCost { get { return buildCost; } }
 
     #endregion
 

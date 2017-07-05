@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour, IDestructibleUnit
     {
         GameEventManager.Instance.EnemyHit();
         currentHitPoints -= damageToDeal;
-        if(damageToDeal <= 0)
+        if(currentHitPoints <= 0)
         {
             DestroyUnit();
         }
