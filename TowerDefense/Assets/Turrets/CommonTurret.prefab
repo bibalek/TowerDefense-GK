@@ -2411,6 +2411,32 @@ MonoBehaviour:
   searchCooldown: 2
   partRotatingInYAxis: {fileID: 1900711616198252}
   buildCost: 25
+  commonTurretDamageUpgrades:
+  - name: base
+    upgradeValue: 12
+    upgradePrice: 0
+  - name: level2
+    upgradeValue: 34
+    upgradePrice: 7
+  - name: level3
+    upgradeValue: 56
+    upgradePrice: 5
+  - name: level4
+    upgradeValue: 78
+    upgradePrice: 6
+  commonTurretFireCooldownUpgrades:
+  - name: base
+    upgradeValue: 4
+    upgradePrice: 0
+  - name: level2
+    upgradeValue: 3
+    upgradePrice: 9
+  - name: level3
+    upgradeValue: 2
+    upgradePrice: 13
+  - name: level4
+    upgradeValue: 1
+    upgradePrice: 15
 --- !u!114 &114935601524174426
 MonoBehaviour:
   m_ObjectHideFlags: 1

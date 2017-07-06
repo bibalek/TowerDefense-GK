@@ -29,7 +29,7 @@ public class UIManager : Singleton<UIManager>
         scoreIndicator.GetComponentInChildren<Text>().text = "Score: " + ScoreManager.Instance.CurrentScore + "$";
     }
 
-    public void ChangeUpgradePanelVisibility()
+    public void ChangeUpgradePanelVisibility(Turret turret)
     {
         if(upgradePanelEnabled)
         {
@@ -39,6 +39,8 @@ public class UIManager : Singleton<UIManager>
         else
         {
             upgradePanel.SetActive(true);
+            UpgradeManager.Instance.SelectedTurret = turret;
+            ShopManager.Instance.RefreshShopCanvas();
             upgradePanelEnabled = true;
         }
         

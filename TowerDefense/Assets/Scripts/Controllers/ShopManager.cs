@@ -21,7 +21,7 @@ public class ShopManager : Singleton<ShopManager> {
     private void Start()
     {
         currentScore = ScoreManager.Instance.CurrentScore;
-        RefreshShopCanvas();
+        //RefreshShopCanvas();
     }
 
     private void Update()
@@ -34,8 +34,8 @@ public class ShopManager : Singleton<ShopManager> {
     #region Public Methods
     public void RefreshShopCanvas()
     {
-        RefreshShopButtonInfo(damageUpgradeButton, UpgradeManager.Instance.CommonTurretDamageUpgrades, UpgradeManager.Instance.CurrentDamageLevel);
-        RefreshShopButtonInfo(fireCooldownUpgradeButton, UpgradeManager.Instance.CommonTurretFireCooldownUpgrades, UpgradeManager.Instance.CurrentFireCooldownLevel);
+        RefreshShopButtonInfo(damageUpgradeButton, UpgradeManager.Instance.SelectedTurret.CommonTurretDamageUpgrades, UpgradeManager.Instance.SelectedTurret.CurrentDamageLevel);
+        RefreshShopButtonInfo(fireCooldownUpgradeButton, UpgradeManager.Instance.SelectedTurret.CommonTurretFireCooldownUpgrades, UpgradeManager.Instance.SelectedTurret.CurrentFireCooldownLevel);
         
     }
     #endregion
@@ -53,23 +53,23 @@ public class ShopManager : Singleton<ShopManager> {
         }
         else
         {
-            SetUpgradeCostText(currentButton, false, "MAX");
+            SetUpgradeCostText(currentButton, false, "MAX LEVEL");
             SetUpgradeLevelText(currentButton, currentUpgradeList, currentUpgradeLevel + 1);
         }
 
     }
 
-    private static void SetUpgradeLevelText(Button currentButton, List<Upgrade> currentUpgradeList, int currentUpgradeLevel)
+    private static void SetUpgradeLevelText(Button currentButton, List<Upgrade> currentUpgradeList, int nextUpgradeLevel)
     {
         Text upgradeLevelText = currentButton.transform.GetChild(1).GetComponent<Text>();
-        upgradeLevelText.text = currentUpgradeLevel + "/" + currentUpgradeList.Count;
+        upgradeLevelText.text = nextUpgradeLevel + "/" + currentUpgradeList.Count;
     }
 
     private static void SetUpgradeCostText(Button currentButton, bool playerCanBuyUpgrade, string upgradePrice)
     {
         Text upgradeCostText = currentButton.transform.GetChild(2).GetComponent<Text>();
         upgradeCostText.color = (playerCanBuyUpgrade) ? Color.green : Color.red;
-        upgradeCostText.text = upgradePrice + "";
+        upgradeCostText.text = "COST: " + upgradePrice + "";
     }
 
     private bool GetPlayerBuyUpgrade(List<Upgrade> currentUpgradeList, int currentUpgradeLevel)
