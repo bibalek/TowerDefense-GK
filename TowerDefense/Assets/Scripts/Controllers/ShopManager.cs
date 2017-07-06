@@ -21,13 +21,11 @@ public class ShopManager : Singleton<ShopManager> {
     private void Start()
     {
         currentScore = ScoreManager.Instance.CurrentScore;
-        //RefreshShopCanvas();
     }
 
     private void Update()
     {
         currentScore = ScoreManager.Instance.CurrentScore;
-        //creditText.text = "Current Credits: " + currentScore;
     }
     #endregion
 
@@ -47,7 +45,6 @@ public class ShopManager : Singleton<ShopManager> {
         {
             bool playerCanBuyUpgrade = GetPlayerBuyUpgrade(currentUpgradeList, currentUpgradeLevel);
             float upgradePrice = currentUpgradeList[currentUpgradeLevel + 1].UpgradePrice;
-            currentButton.interactable = playerCanBuyUpgrade;
             SetUpgradeCostText(currentButton, playerCanBuyUpgrade, upgradePrice.ToString());
             SetUpgradeLevelText(currentButton, currentUpgradeList, currentUpgradeLevel + 1);
         }
@@ -60,13 +57,13 @@ public class ShopManager : Singleton<ShopManager> {
 
     }
 
-    private static void SetUpgradeLevelText(Button currentButton, List<Upgrade> currentUpgradeList, int nextUpgradeLevel)
+    private void SetUpgradeLevelText(Button currentButton, List<Upgrade> currentUpgradeList, int nextUpgradeLevel)
     {
         Text upgradeLevelText = currentButton.transform.GetChild(1).GetComponent<Text>();
         upgradeLevelText.text = nextUpgradeLevel + "/" + currentUpgradeList.Count;
     }
 
-    private static void SetUpgradeCostText(Button currentButton, bool playerCanBuyUpgrade, string upgradePrice)
+    private void SetUpgradeCostText(Button currentButton, bool playerCanBuyUpgrade, string upgradePrice)
     {
         Text upgradeCostText = currentButton.transform.GetChild(2).GetComponent<Text>();
         upgradeCostText.color = (playerCanBuyUpgrade) ? Color.green : Color.red;
@@ -75,7 +72,7 @@ public class ShopManager : Singleton<ShopManager> {
 
     private bool GetPlayerBuyUpgrade(List<Upgrade> currentUpgradeList, int currentUpgradeLevel)
     {
-        return UpgradeManager.Instance.PlayerCanBuyUpgrade(currentUpgradeList, currentUpgradeLevel);
+        return UpgradeManager.Instance.PlayerHaveMoney(currentUpgradeList, currentUpgradeLevel);
     }
     #endregion
 }

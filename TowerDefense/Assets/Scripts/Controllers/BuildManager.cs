@@ -38,7 +38,7 @@ public class BuildManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("nem");
+            GameEventManager.Instance.NotEnoughMoney();
         }  
     }
 
@@ -49,7 +49,7 @@ public class BuildManager : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(hit.transform.gameObject.name);
+                //Debug.Log(hit.transform.gameObject.name);
             }
 
             turret.transform.position = hit.point;
@@ -59,21 +59,28 @@ public class BuildManager : MonoBehaviour
                 if (hit.point.y >= 4.8 && hit.collider.gameObject.CompareTag("Terrain"))
                 {
                     canBuild = false;
-                    turret.transform.position = hit.point;
-                    turret.GetComponent<Turret>().enabled = true;
-                    turret.GetComponent<ProjectileLauncher>().enabled = true;
-                    turret.GetComponent<Collider>().enabled = true;
-                    turret = null;
+                    SetNewTurretSettings();
                     ScoreManager.Instance.SubtractScore(cost);
+                    if(UpgradeManager.Instance.SelectedTurret != null)
+                    {
+                        ShopManager.Instance.RefreshShopCanvas();
+                    }
                 }
                 else
                 {
-                    Debug.Log("Cant build here!");
+                    GameEventManager.Instance.FailedBuild();
                 }
             }
         }
     }
 
-
+    private void SetNewTurretSettings()
+    {
+        turret.transform.position = hit.point;
+        turret.GetComponent<Turret>().enabled = true;
+        turret.GetComponent<ProjectileLauncher>().enabled = true;
+        turret.GetComponent<Collider>().enabled = true;
+        turret = null;
+    }
 
 }
