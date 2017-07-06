@@ -48,8 +48,8 @@ public class UpgradeManager : Singleton<UpgradeManager>
     {
         if (PlayerCanBuyUpgrade(selectedTurret.CommonTurretDamageUpgrades, selectedTurret.CurrentDamageLevel))
         {
-            selectedTurret.CurrentDamageLevel++;
-            ScoreManager.Instance.SubtractScore(selectedTurret.CommonTurretDamageUpgrades[currentDamageLevel - 1].UpgradePrice);
+            //selectedTurret.CurrentDamageLevel++;
+            ScoreManager.Instance.SubtractScore(selectedTurret.CommonTurretDamageUpgrades[++selectedTurret.CurrentDamageLevel].UpgradePrice);
             
             shopManager.RefreshShopCanvas();
             selectedTurret.SetCurrentUpgradesValues();
@@ -60,8 +60,8 @@ public class UpgradeManager : Singleton<UpgradeManager>
     {
         if (PlayerCanBuyUpgrade(selectedTurret.CommonTurretFireCooldownUpgrades, selectedTurret.CurrentFireCooldownLevel))
         {
-            currentFireCooldownLevel++;
-            ScoreManager.Instance.SubtractScore(selectedTurret.CommonTurretFireCooldownUpgrades[currentFireCooldownLevel - 1].UpgradePrice);
+            //currentFireCooldownLevel++;
+            ScoreManager.Instance.SubtractScore(selectedTurret.CommonTurretFireCooldownUpgrades[++selectedTurret.CurrentFireCooldownLevel].UpgradePrice);
             
             shopManager.RefreshShopCanvas();
             selectedTurret.SetCurrentUpgradesValues();
@@ -72,7 +72,7 @@ public class UpgradeManager : Singleton<UpgradeManager>
     {
         if (currentUpgradeLevel < upgradesList.Count - 1)
         {
-            return upgradesList[++currentUpgradeLevel].UpgradePrice < ScoreManager.Instance.CurrentScore;
+            return upgradesList[currentUpgradeLevel + 1].UpgradePrice < ScoreManager.Instance.CurrentScore;
         }
         else
         {

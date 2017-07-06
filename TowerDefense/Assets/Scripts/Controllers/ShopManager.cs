@@ -53,6 +53,7 @@ public class ShopManager : Singleton<ShopManager> {
         }
         else
         {
+            currentButton.interactable = false;
             SetUpgradeCostText(currentButton, false, "MAX LEVEL");
             SetUpgradeLevelText(currentButton, currentUpgradeList, currentUpgradeLevel + 1);
         }
