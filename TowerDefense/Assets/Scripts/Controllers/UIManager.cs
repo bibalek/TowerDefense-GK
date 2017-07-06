@@ -46,14 +46,25 @@ public class UIManager : Singleton<UIManager>
     {
         if(upgradePanelEnabled)
         {
-            upgradePanel.SetActive(false);
-            upgradePanelEnabled = false;
-            markedArea.SetActive(false);
+            UpgradeManager.Instance.SelectedTurret = turret;
+            if(UpgradeManager.Instance.PreviousSelectedTurret == UpgradeManager.Instance.SelectedTurret)
+            {
+                upgradePanel.SetActive(false);
+                upgradePanelEnabled = false;
+                markedArea.SetActive(false);
+            }
+            else
+            {
+                UpgradeManager.Instance.PreviousSelectedTurret = turret;
+                markedArea.transform.position = turret.transform.position;
+                markedArea.SetActive(true);
+            }
         }
         else
         {
             upgradePanel.SetActive(true);
             UpgradeManager.Instance.SelectedTurret = turret;
+            UpgradeManager.Instance.PreviousSelectedTurret = turret;
             ShopManager.Instance.RefreshShopCanvas();
             upgradePanelEnabled = true;
             markedArea.transform.position = turret.transform.position;
