@@ -14,7 +14,6 @@ public class ProjectileLauncher : MonoBehaviour
     private Transform barrel;
     [SerializeField]
     private int turretDamage;
-
     #endregion
 
     #region Private Fields
@@ -68,8 +67,5 @@ public class ProjectileLauncher : MonoBehaviour
         projectile.transform.forward = barrel.forward;
         projectile.transform.position = barrel.position;
     }
-
-    
-
     #endregion
 }

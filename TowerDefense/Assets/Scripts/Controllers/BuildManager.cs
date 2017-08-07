@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildManager : MonoBehaviour
+public class BuildManager : Singleton<BuildManager>
 {
     [SerializeField]
     private GameObject turretToBuild;
@@ -12,22 +12,19 @@ public class BuildManager : MonoBehaviour
     private bool canBuild = false;
     private GameObject turret = null;
     private int cost = 0;
+    private Ray ray;
+    private RaycastHit hit;
+
+    public bool CanBuild { get { return canBuild; } set { canBuild = value; } }
 
     #region Unity Callbacks
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         TryToBuild();
     }
     #endregion
 
-    Ray ray;
-    RaycastHit hit;
-
+    #region Public Methods
     public void SpawnTurret()
     {
         cost = turretToBuild.GetComponent<Turret>().BuildCost;
@@ -35,13 +32,16 @@ public class BuildManager : MonoBehaviour
         {
             turret = Instantiate(turretToBuild);
             canBuild = true;
+            UpgradeManager.Instance.CanUpgrade = false;
         }
         else
         {
             GameEventManager.Instance.NotEnoughMoney();
         }  
     }
+    #endregion
 
+    #region Private Methods
     private void TryToBuild()
     {
         if (canBuild)
@@ -49,29 +49,39 @@ public class BuildManager : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                //Debug.Log(hit.transform.gameObject.name);
             }
 
             turret.transform.position = hit.point;
 
-            if (Input.GetMouseButtonDown(0))
+            CheckMouseClick();
+        }
+    }
+
+    private void CheckMouseClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (hit.point.y >= 4.8 && hit.collider.gameObject.CompareTag("Terrain"))
             {
-                if (hit.point.y >= 4.8 && hit.collider.gameObject.CompareTag("Terrain"))
-                {
-                    canBuild = false;
-                    SetNewTurretSettings();
-                    ScoreManager.Instance.SubtractScore(cost);
-                    if(UpgradeManager.Instance.SelectedTurret != null)
-                    {
-                        ShopManager.Instance.RefreshShopCanvas();
-                    }
-                }
-                else
-                {
-                    GameEventManager.Instance.FailedBuild();
-                }
+                BuildTower();
+            }
+            else
+            {
+                GameEventManager.Instance.FailedBuild();
             }
         }
+    }
+
+    private void BuildTower()
+    {
+        canBuild = false;
+        SetNewTurretSettings();
+        ScoreManager.Instance.SubtractScore(cost);
+        if (UpgradeManager.Instance.SelectedTurret != null)
+        {
+            ShopManager.Instance.RefreshShopCanvas();
+        }
+        UpgradeManager.Instance.CanUpgrade = true;
     }
 
     private void SetNewTurretSettings()
@@ -82,5 +92,5 @@ public class BuildManager : MonoBehaviour
         turret.GetComponent<Collider>().enabled = true;
         turret = null;
     }
-
+    #endregion
 }

@@ -13,10 +13,12 @@ public class UpgradeManager : Singleton<UpgradeManager>
     private ShopManager shopManager;
     #endregion
 
+    private bool canUpgrade = true;
+
     #region Public Properties
     public Turret SelectedTurret { get { return selectedTurret; } set { selectedTurret = value; } }
     public Turret PreviousSelectedTurret { get { return previousSelectedTurret; } set { previousSelectedTurret = value; } }
-
+    public bool CanUpgrade { get { return canUpgrade; } set { canUpgrade = value; } }
     #endregion
 
     #region Unity Callbacks
@@ -30,14 +32,14 @@ public class UpgradeManager : Singleton<UpgradeManager>
     {
         if (PlayerCanBuyUpgrade(selectedTurret.CommonTurretDamageUpgrades, selectedTurret.CurrentDamageLevel))
         {
-            if(PlayerHaveMoney(selectedTurret.CommonTurretDamageUpgrades, selectedTurret.CurrentDamageLevel))
+            if (PlayerHaveMoney(selectedTurret.CommonTurretDamageUpgrades, selectedTurret.CurrentDamageLevel))
             {
                 ScoreManager.Instance.SubtractScore(selectedTurret.CommonTurretDamageUpgrades[++selectedTurret.CurrentDamageLevel].UpgradePrice);
 
                 shopManager.RefreshShopCanvas();
                 selectedTurret.SetCurrentUpgradesValues();
             }
-            
+
         }
     }
 
@@ -45,7 +47,7 @@ public class UpgradeManager : Singleton<UpgradeManager>
     {
         if (PlayerCanBuyUpgrade(selectedTurret.CommonTurretFireCooldownUpgrades, selectedTurret.CurrentFireCooldownLevel))
         {
-            if(PlayerHaveMoney(selectedTurret.CommonTurretFireCooldownUpgrades, selectedTurret.CurrentFireCooldownLevel))
+            if (PlayerHaveMoney(selectedTurret.CommonTurretFireCooldownUpgrades, selectedTurret.CurrentFireCooldownLevel))
             {
                 ScoreManager.Instance.SubtractScore(selectedTurret.CommonTurretFireCooldownUpgrades[++selectedTurret.CurrentFireCooldownLevel].UpgradePrice);
 

@@ -15,6 +15,12 @@ public class WaveManager : Singleton<WaveManager>
     private Transform spawnPoint;
     [SerializeField]
     private List<Wave> waves;
+    [SerializeField]
+    private GameObject path;
+    #endregion
+
+    #region Public Properties
+    public GameObject Path { get { return path; } }
     #endregion
 
     #region Unity Callbacks
@@ -33,6 +39,7 @@ public class WaveManager : Singleton<WaveManager>
             yield return SpawnEnemies(spawnCooldown, wave.CurrentWave.CurrentIngredients);
             yield return new WaitForSeconds(nextWaveCooldown);
         }
+        GameManager.Instance.EndGameAvaible = true;
     }
 
     private IEnumerator SpawnEnemies(float spawnCooldown, List<WaveIngredient> waveIngredients)
@@ -42,6 +49,7 @@ public class WaveManager : Singleton<WaveManager>
             for (int i = 0; i < waveIngredient.CurrentWaveIngredient.Amount; i++)
             {
                 Instantiate(waveIngredient.CurrentWaveIngredient.EnemyPrefab, spawnPoint.position, spawnPoint.rotation);
+                GameManager.Instance.AddSpawnedEnemy();
                 yield return new WaitForSeconds(spawnCooldown);
             }
         }

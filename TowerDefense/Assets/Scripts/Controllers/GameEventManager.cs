@@ -14,6 +14,8 @@ public class GameEventManager : Singleton<GameEventManager>
     private UnityEvent onFailedBuild;
     [SerializeField, HideInInspector]
     private UnityEvent onNotEnoughMoney;
+    [SerializeField, HideInInspector]
+    private UnityEvent onPlayerHit;
     #endregion
 
     #region Public Properties
@@ -22,6 +24,7 @@ public class GameEventManager : Singleton<GameEventManager>
     public UnityEvent OnScoreChange { get { return onScoreChange; } set { onScoreChange = value; } }
     public UnityEvent OnFailedBuild { get { return onFailedBuild; } set { onFailedBuild = value; } }
     public UnityEvent OnNotEnoughMoney { get { return onNotEnoughMoney; } set { onNotEnoughMoney = value; } }
+    public UnityEvent OnPlayerHit { get { return onPlayerHit; } set { onPlayerHit = value; } }
     #endregion
 
     #region Public Methods
@@ -62,6 +65,14 @@ public class GameEventManager : Singleton<GameEventManager>
         if (onNotEnoughMoney != null)
         {
             onNotEnoughMoney.Invoke();
+        }
+    }
+
+    public void PlayerHit()
+    {
+        if (onPlayerHit != null)
+        {
+            onPlayerHit.Invoke();
         }
     }
     #endregion

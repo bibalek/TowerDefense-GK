@@ -54,7 +54,6 @@ public class ShopManager : Singleton<ShopManager> {
             SetUpgradeCostText(currentButton, false, "MAX LEVEL");
             SetUpgradeLevelText(currentButton, currentUpgradeList, currentUpgradeLevel + 1);
         }
-
     }
 
     private void SetUpgradeLevelText(Button currentButton, List<Upgrade> currentUpgradeList, int nextUpgradeLevel)

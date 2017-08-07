@@ -6,11 +6,9 @@ public class EnemyMovement : MonoBehaviour
 {
     #region SerializedFields
     [SerializeField]
-    float speed;
+    private float speed;
     [SerializeField]
-    float rotationSpeed;
-    [SerializeField]
-    GameObject path;
+    private float rotationSpeed;
     #endregion
 
     #region PrivateVariables
@@ -18,15 +16,18 @@ public class EnemyMovement : MonoBehaviour
     private int currentNodeIndex = 0;
     private Vector3 direction;
     private float currentDistance;
+    private GameObject path;
+    private Enemy enemy;
     #endregion
 
     #region UnityCallbacks
-    void Start()
+    private void Start()
     {
-
+        path = WaveManager.Instance.Path;
+        enemy = GetComponent<Enemy>();
     }
 
-    void Update()
+    private void Update()
     {
         if (nextPathNode == null)
         {
@@ -39,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
     }
     #endregion
 
-    #region PrivateMethods
+    #region Private Methods
     private void GetNextPathNode()
     {
         if (currentNodeIndex < path.transform.childCount)
@@ -90,6 +91,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void EndPath()
     {
+        GameEventManager.Instance.PlayerHit();
+        GameManager.Instance.SubstractLives(enemy.LivesToSubstract);
         Destroy(gameObject);
     }
     #endregion

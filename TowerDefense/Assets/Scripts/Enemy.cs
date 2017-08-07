@@ -9,6 +9,12 @@ public class Enemy : MonoBehaviour, IDestructibleUnit
     private int maxHitPoints;
     [SerializeField]
     private int currentHitPoints;
+    [SerializeField]
+    private int livesToSubstract;
+    #endregion
+
+    #region Public Properties
+    public int LivesToSubstract { get { return livesToSubstract; } }
     #endregion
 
     #region Unity Callbacks

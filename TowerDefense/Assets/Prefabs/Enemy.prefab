@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4779189188872676}
   - component: {fileID: 114962835140052144}
+  - component: {fileID: 114962154398700320}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -103,6 +104,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33134807690905956
 MeshFilter:
@@ -138,6 +140,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114962154398700320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1473052698499244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb48235a1a43b2d42b06a3ed24ef3fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoints: 20
+  currentHitPoints: 0
+  livesToSubstract: 5
 --- !u!114 &114962835140052144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,4 +167,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   rotationSpeed: 5
-  path: {fileID: 1549360686540962, guid: 4855d7e731556784da49996d4553bad3, type: 2}

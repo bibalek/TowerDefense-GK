@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-
+    #region Serialized Fields
     [SerializeField]
     private GameObject scoreIndicator;
     [SerializeField]
@@ -18,46 +18,49 @@ public class UIManager : Singleton<UIManager>
     private float notificationFadeoutTime;
     [SerializeField]
     private GameObject markedAreaPrefab;
+    [SerializeField]
+    private GameObject looseGamePanel;
+    [SerializeField]
+    private GameObject winGamePanel;
+    [SerializeField]
+    private GameObject livesIndicator;
+    #endregion
 
+    #region Private Fields
     private bool upgradePanelEnabled = false;
     private GameObject markedArea;
+    #endregion
+
+    #region Unity Callbacks
     private void Start()
     {
         markedArea = Instantiate(markedAreaPrefab, Vector3.zero, Quaternion.identity);
         markedArea.SetActive(false);
-        GameEventManager.Instance.OnScoreChange.AddListener(UpdateScore);
-        GameEventManager.Instance.OnFailedBuild.AddListener(ShowYouCantBuildHereNotification);
-        GameEventManager.Instance.OnNotEnoughMoney.AddListener(ShowNotEnoughMoneyNotification);
-        scoreIndicator.GetComponentInChildren<Text>().text = "Score: " + ScoreManager.Instance.CurrentScore + "$";
-
+        InitializeEventListeners();
+        UpdateScore();
+        UpdateLives();
     }
+    #endregion
 
-    private void Update()
-    {
-
-    }
-
-    private void UpdateScore()
-    {
-        scoreIndicator.GetComponentInChildren<Text>().text = "Score: " + ScoreManager.Instance.CurrentScore + "$";
-    }
-
+    #region Public Methods
     public void ChangeUpgradePanelVisibility(Turret turret)
     {
-        if(upgradePanelEnabled)
+        if (upgradePanelEnabled)
         {
             UpgradeManager.Instance.SelectedTurret = turret;
-            if(UpgradeManager.Instance.PreviousSelectedTurret == UpgradeManager.Instance.SelectedTurret)
+            if (UpgradeManager.Instance.PreviousSelectedTurret == UpgradeManager.Instance.SelectedTurret)
             {
                 upgradePanel.SetActive(false);
                 upgradePanelEnabled = false;
                 markedArea.SetActive(false);
+                BuildManager.Instance.CanBuild = true;
             }
             else
             {
                 UpgradeManager.Instance.PreviousSelectedTurret = turret;
                 markedArea.transform.position = turret.transform.position;
                 markedArea.SetActive(true);
+                BuildManager.Instance.CanBuild = false;
             }
         }
         else
@@ -69,7 +72,25 @@ public class UIManager : Singleton<UIManager>
             upgradePanelEnabled = true;
             markedArea.transform.position = turret.transform.position;
             markedArea.SetActive(true);
-        }  
+            BuildManager.Instance.CanBuild = false;
+        }
+    }
+
+    public void ShowLooseGamePanel()
+    {
+        looseGamePanel.SetActive(true);
+    }
+
+    public void ShowWinGamePanel()
+    {
+        winGamePanel.SetActive(true);
+    }
+    #endregion
+
+    #region Private Methods
+    private void UpdateScore()
+    {
+        scoreIndicator.GetComponentInChildren<Text>().text = "Score: " + ScoreManager.Instance.CurrentScore + "$";
     }
 
     private IEnumerator FadeNotification(GameObject notification, float time)
@@ -116,4 +137,18 @@ public class UIManager : Singleton<UIManager>
         StopAllCoroutines();
         StartCoroutine(FadeNotification(notification, notificationFadeoutTime));
     }
+
+    private void UpdateLives()
+    {
+        livesIndicator.GetComponentInChildren<Text>().text = "Lives: " + GameManager.Instance.CurrentLives;
+    }
+
+    private void InitializeEventListeners()
+    {
+        GameEventManager.Instance.OnScoreChange.AddListener(UpdateScore);
+        GameEventManager.Instance.OnFailedBuild.AddListener(ShowYouCantBuildHereNotification);
+        GameEventManager.Instance.OnNotEnoughMoney.AddListener(ShowNotEnoughMoneyNotification);
+        GameEventManager.Instance.OnPlayerHit.AddListener(UpdateLives);
+    }
+    #endregion
 }

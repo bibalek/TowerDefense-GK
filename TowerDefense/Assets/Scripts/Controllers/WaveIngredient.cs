@@ -12,11 +12,6 @@ public class WaveIngredient
     private int amount;
     #endregion
 
-    private void Start()
-    {
-
-    }
-
     #region Public Properties
     public WaveIngredient CurrentWaveIngredient { get { return this; } }
     public GameObject EnemyPrefab { get { return enemyPrefab; } }

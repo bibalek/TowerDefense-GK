@@ -8,37 +8,38 @@ public class SimpleProjectile : MonoBehaviour {
     [SerializeField]
     private float speed;
     [SerializeField]
-    private float lifeTime;
-
+    private float lifeTime = 8f;
     #endregion
 
     #region Public Properties
-
     public Transform ProjectileTarget { get { return target; } set { target = value; } }
     public int DamageToDeal { get { return damageToDeal; } set { damageToDeal = value; } }
-
     #endregion
 
+    #region Private Fields
     private Transform target;
     private Vector3 direction;
     private float currentDistance;
     private int damageToDeal;
+    #endregion
 
     #region Unity Callbacks
     private void Start()
     {
-
+        StartCoroutine(DestroyAfterTime());
     }
 
     private void Update()
     {
-        direction = target.position - this.transform.localPosition;
+        if(target != null)
+        {
+            direction = target.position - this.transform.localPosition;
+        }
         currentDistance = Time.deltaTime * speed;
         if(direction.magnitude > currentDistance)
         {
             transform.Translate(direction.normalized * currentDistance, Space.World);
         }
-
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -60,6 +61,11 @@ public class SimpleProjectile : MonoBehaviour {
     {
         transform.position += transform.forward * Time.deltaTime * speed;
     }
-    #endregion
 
+    private IEnumerator DestroyAfterTime()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        Destroy(gameObject);
+    }
+    #endregion
 }

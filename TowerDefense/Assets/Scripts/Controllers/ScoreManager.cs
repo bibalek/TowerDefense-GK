@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class ScoreManager : Singleton<ScoreManager>
 {
-
+    #region Serialized Fields
     [SerializeField]
     private int startScore;
     [SerializeField]
     private int currentScore;
+    #endregion
 
+    #region Unity Callbacks
     private void Awake()
     {
         currentScore = startScore;
         GameEventManager.Instance.OnEnemyDestroyed.AddListener(() => AddScore(5));
     }
+    #endregion
 
-    private void Update()
-    {
-
-    }
-
+    #region Public Properties
     public int CurrentScore { get { return currentScore; } }
+    #endregion
 
+    #region Public Methods
     public void AddScore(int scoreToAdd)
     {
         currentScore += scoreToAdd;
@@ -34,4 +35,5 @@ public class ScoreManager : Singleton<ScoreManager>
         currentScore -= scoreToSubtract;
         GameEventManager.Instance.ScoreChanged();
     }
+    #endregion
 }
