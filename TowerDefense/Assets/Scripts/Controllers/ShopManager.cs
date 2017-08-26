@@ -66,6 +66,7 @@ public class ShopManager : Singleton<ShopManager> {
     {
         Text upgradeCostText = currentButton.transform.GetChild(2).GetComponent<Text>();
         upgradeCostText.color = (playerCanBuyUpgrade) ? Color.green : Color.red;
+        currentButton.interactable = (playerCanBuyUpgrade) ? true : false;
         upgradeCostText.text = "COST: " + upgradePrice + "";
     }
 

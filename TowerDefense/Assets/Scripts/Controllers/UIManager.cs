@@ -59,6 +59,7 @@ public class UIManager : Singleton<UIManager>
             {
                 UpgradeManager.Instance.PreviousSelectedTurret = turret;
                 markedArea.transform.position = turret.transform.position;
+                ShopManager.Instance.RefreshShopCanvas();
                 markedArea.SetActive(true);
                 BuildManager.Instance.CanBuild = false;
             }

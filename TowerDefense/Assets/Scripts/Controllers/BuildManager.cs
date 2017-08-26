@@ -46,14 +46,17 @@ public class BuildManager : Singleton<BuildManager>
     {
         if (canBuild)
         {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if(turret != null)
             {
-            }
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit))
+                {
+                }
 
-            turret.transform.position = hit.point;
+                turret.transform.position = hit.point;
 
-            CheckMouseClick();
+                CheckMouseClick();
+            } 
         }
     }
 
