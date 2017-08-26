@@ -21,6 +21,7 @@ public class ShopManager : Singleton<ShopManager> {
     private void Start()
     {
         currentScore = ScoreManager.Instance.CurrentScore;
+        
     }
 
     private void Update()
@@ -74,5 +75,6 @@ public class ShopManager : Singleton<ShopManager> {
     {
         return UpgradeManager.Instance.PlayerHaveMoney(currentUpgradeList, currentUpgradeLevel);
     }
+
     #endregion
 }

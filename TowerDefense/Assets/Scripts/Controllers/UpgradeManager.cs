@@ -68,7 +68,7 @@ public class UpgradeManager : Singleton<UpgradeManager>
 
     public bool PlayerHaveMoney(List<Upgrade> upgradesList, int currentUpgradeLevel)
     {
-        return upgradesList[currentUpgradeLevel + 1].UpgradePrice < ScoreManager.Instance.CurrentScore;
+        return upgradesList[currentUpgradeLevel + 1].UpgradePrice <= ScoreManager.Instance.CurrentScore;
     }
     #endregion
 }

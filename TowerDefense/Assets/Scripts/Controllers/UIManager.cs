@@ -150,6 +150,15 @@ public class UIManager : Singleton<UIManager>
         GameEventManager.Instance.OnFailedBuild.AddListener(ShowYouCantBuildHereNotification);
         GameEventManager.Instance.OnNotEnoughMoney.AddListener(ShowNotEnoughMoneyNotification);
         GameEventManager.Instance.OnPlayerHit.AddListener(UpdateLives);
+        GameEventManager.Instance.OnScoreChange.AddListener(UpdateActiveUpgradePanel);
+    }
+
+    private void UpdateActiveUpgradePanel()
+    {
+        if (upgradePanelEnabled)
+        {
+            ShopManager.Instance.RefreshShopCanvas();
+        }
     }
     #endregion
 }

@@ -11,6 +11,12 @@ public class Enemy : MonoBehaviour, IDestructibleUnit
     private int currentHitPoints;
     [SerializeField]
     private int livesToSubstract;
+    [SerializeField]
+    private GameObject destroyEffect;
+    #endregion
+
+    #region Private Fields
+    private Collider[] colliders;
     #endregion
 
     #region Public Properties
@@ -20,6 +26,7 @@ public class Enemy : MonoBehaviour, IDestructibleUnit
     #region Unity Callbacks
     private void Start()
     {
+        colliders = GetComponentsInChildren<Collider>();
         currentHitPoints = maxHitPoints;
     }
 
@@ -35,8 +42,13 @@ public class Enemy : MonoBehaviour, IDestructibleUnit
     {
         GameEventManager.Instance.EnemyHit();
         currentHitPoints -= damageToDeal;
-        if(currentHitPoints <= 0)
+        if (currentHitPoints <= 0)
         {
+            destroyEffect.SetActive(true);
+            foreach(Collider col in colliders)
+            {
+                col.enabled = false;
+            }
             DestroyUnit();
         }
     }
@@ -44,7 +56,7 @@ public class Enemy : MonoBehaviour, IDestructibleUnit
     public void DestroyUnit()
     {
         GameEventManager.Instance.EnemyDestroyed();
-        Destroy(gameObject);
+        Destroy(gameObject, 0.8f);
     }
 
     #endregion
